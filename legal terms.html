@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spudy Intelligence Technology Legal Centre</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            overflow-x: hidden;
+            background: linear-gradient(rgba(9, 23, 47, 0.95), rgba(9, 23, 47, 0.98));
+        }
+
+        /* Header Section */
+        .header {
+            height: 100vh;
+            width: 100%;
+            background: linear-gradient(rgba(9, 23, 47, 0.9), rgba(9, 23, 47, 0.7)),
+                        url('https://images.unsplash.com/photo-1491841550275-adc9c2cdda06?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            transform: translateY(-50%);
+            color: white;
+            max-width: 800px;
+            z-index: 1;
+        }
+
+        .content h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+            animation: slideRight 1s ease;
+        }
+
+        .content p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #d3e3ff;
+            animation: slideUp 1s ease;
+        }
+
+        .action-buttons {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 100;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            background: rgba(42, 117, 255, 0.9);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 5px 15px rgba(42, 117, 255, 0.3);
+            font-size: 1em;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background: #2a75ff;
+            transform: translateX(-10px);
+            box-shadow: 0 8px 25px rgba(42, 117, 255, 0.5);
+        }
+
+        /* Section Styles */
+        .terms-section, .privacy-section {
+            padding: 100px 10%;
+            background: linear-gradient(rgba(9, 23, 47, 0.95), rgba(9, 23, 47, 0.98));
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .terms-section h2, .privacy-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #2a75ff;
+            text-align: center;
+            animation: slideRight 1s ease;
+        }
+
+        .terms-section p.intro, .privacy-section p.intro {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #d3e3ff;
+            text-align: center;
+            margin-bottom: 40px;
+            animation: slideUp 1s ease;
+        }
+
+        .legal-card {
+            background: rgba(42, 117, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid rgba(42, 117, 255, 0.3);
+            transform: translateY(50px);
+            opacity: 0;
+            animation: slideUp 1s ease forwards;
+            box-shadow: 0 5px 15px rgba(42, 117, 255, 0.2);
+        }
+
+        details {
+            margin-bottom: 15px;
+            background: rgba(42, 117, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+
+        details[open] {
+            background: rgba(42, 117, 255, 0.15);
+        }
+
+        summary {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #2a75ff;
+            cursor: pointer;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        summary:hover {
+            color: #4a95ff;
+        }
+
+        details p {
+            font-size: 1em;
+            line-height: 1.8;
+            color: #d3e3ff;
+            padding: 15px;
+        }
+
+        /* Footer Section */
+        .footer {
+            padding: 60px 10% 40px;
+            background: linear-gradient(rgba(9, 23, 47, 0.95), rgba(9, 23, 47, 0.98));
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer h3 {
+            font-size: 2em;
+            margin-bottom: 15px;
+            color: #2a75ff;
+        }
+
+        .footer h4 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #2a75ff;
+        }
+
+        .footer p {
+            font-size: 1em;
+            line-height: 1.8;
+            color: #d3e3ff;
+        }
+
+        .footer .quick-links, .footer .contact-links {
+            background: rgba(42, 117, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(42, 117, 255, 0.3);
+            box-shadow: 0 5px 15px rgba(42, 117, 255, 0.2);
+        }
+
+        .footer .quick-links ul, .footer .contact-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer .quick-links ul li, .footer .contact-links ul li {
+            margin-bottom: 12px;
+            animation: slideUp 1s ease forwards;
+            opacity: 0;
+        }
+
+        .footer .quick-links ul li:nth-child(1) { animation-delay: 0.2s; }
+        .footer .quick-links ul li:nth-child(2) { animation-delay: 0.4s; }
+        .footer .quick-links ul li:nth-child(3) { animation-delay: 0.6s; }
+        .footer .quick-links ul li:nth-child(4) { animation-delay: 0.8s; }
+        .footer .contact-links ul li:nth-child(1) { animation-delay: 0.2s; }
+        .footer .contact-links ul li:nth-child(2) { animation-delay: 0.4s; }
+        .footer .contact-links ul li:nth-child(3) { animation-delay: 0.6s; }
+        .footer .contact-links ul li:nth-child(4) { animation-delay: 0.8s; }
+        .footer .contact-links ul li:nth-child(5) { animation-delay: 1.0s; }
+        .footer .contact-links ul li:nth-child(6) { animation-delay: 1.2s; }
+
+        .footer .quick-links ul li a, .footer .contact-links ul li a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #d3e3ff;
+            font-size: 1.1em;
+            font-weight: 500;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .footer .quick-links ul li a:hover, .footer .contact-links ul li a:hover {
+            background: rgba(42, 117, 255, 0.2);
+            color: #2a75ff;
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(42, 117, 255, 0.3);
+        }
+
+        .footer .quick-links ul li a::after, .footer .contact-links ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 15px;
+            background: linear-gradient(to right, #2a75ff, #4a95ff);
+            transition: width 0.3s ease;
+        }
+
+        .footer .quick-links ul li a:hover::after, .footer .contact-links ul li a:hover::after {
+            width: calc(100% - 30px);
+        }
+
+        .footer .copyright {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #d3e3ff;
+            border-top: 1px solid rgba(42, 117, 255, 0.3);
+            padding-top: 20px;
+        }
+
+        /* Animations */
+        @keyframes slideRight {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            background: rgba(42, 117, 255, 0.1);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(500px, 500px) rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .content h1 { font-size: 3em; }
+            .content p { font-size: 1em; }
+            .content { max-width: 90%; }
+            .action-buttons { right: 15px; }
+            .btn { padding: 12px 25px; }
+            .terms-section h2, .privacy-section h2 { font-size: 2em; }
+            .terms-section p.intro, .privacy-section p.intro { font-size: 1em; }
+            .legal-card { padding: 20px; }
+            summary { font-size: 1.1em; }
+            details p { font-size: 0.9em; }
+            .footer h3 { font-size: 1.5em; }
+            .footer h4 { font-size: 1.3em; }
+            .footer .quick-links, .footer .contact-links { padding: 15px; }
+            .footer .quick-links ul li a, .footer .contact-links ul li a { font-size: 1em; padding: 8px 12px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header" id="hero">
+        <div class="floating-element" style="width: 200px; height: 200px; top: 20%; left: 5%;"></div>
+        <div class="floating-element" style="width: 150px; height: 150px; top: 80%; left: 85%;"></div>
+        <div class="content">
+            <h1>Spudy Intelligence Technology Legal Centre</h1>
+            <p>Review our Terms of Service and Privacy Policy for Spudy AI and Spudy Library services.</p>
+        </div>
+        <div class="action-buttons">
+            <button class="btn" onclick="scrollToContact()">
+                <i class="fas fa-phone-alt"></i> Contact Us
+            </button>
+        </div>
+    </header>
+
+    <!-- Terms of Service Section -->
+    <section class="terms-section" id="terms">
+        <h2>Terms of Service</h2>
+        <p class="intro">These terms govern your use of Spudy Intelligence Technology’s services, including Spudy AI tools and Spudy Library’s books and courses.</p>
+        <div class="legal-card">
+            <details>
+                <summary><i class="fas fa-file-contract"></i> Acceptance of Terms</summary>
+                <p>By accessing or using Spudy Intelligence Technology’s services, including Spudy AI and Spudy Library, you agree to these Terms of Service. If you do not agree, please do not use our services.</p>
+            </details>
+            <details>
+                <summary><i class="fas fa-robot"></i> Spudy AI Usage</summary>
+                <p>You may use Spudy AI tools for personal, non-commercial purposes. You agree not to reverse-engineer, modify, or use our AI models for unauthorized purposes. AI-generated content remains the property of Spudy Intelligence Technology.</p>
+            </details>
+            <details>
+                <summary><i class="fas fa-book"></i> Spudy Library Usage</summary>
+                <p>You may access Spudy Library’s books and courses for personal, non-commercial use. You agree not to reproduce, distribute, or modify our content without permission.</p>
+            </details>
+            <details>
+                <summary><i class="fas fa-copyright"></i> Intellectual Property</summary>
+                <p>All content, including Spudy AI models, algorithms, and Spudy Library books and courses, is owned by Spudy Intelligence Technology or its licensors. Unauthorized commercial use is prohibited.</p>
+            </details>
+            <details>
+                <summary><i class="fas fa-user-shield"></i> User Conduct</summary>
+                <p>You agree not to engage in illegal activities, misuse our AI tools, harass others, or disrupt our services. Violations may result in suspension or termination of access.</p>
+            </details>
+            <details>
+                <summary><i class="fas fa-ban"></i> Termination</summary>
+                <p>We may terminate your access to Spudy AI or Spudy Library services for violations of these terms or other reasons, with or without notice.</p>
+            </details>
+            <details>
+                <summary><i class="fas fa-shield-alt"></i> Limitation of Liability</summary>
+                <p>Spudy Intelligence Technology is not liable for damages arising from your use of Spudy AI or Spudy Library services. Our services are provided "as is" without warranties.</p>
+            </details>
+        </div>
+    </section>
+
+    <!-- Privacy Centre Section -->
+    <section class="privacy-section" id="privacy">
+        <h2>Privacy Centre</h2>
+        <p class="intro">We are committed to protecting your privacy. Learn how we collect, use, and safeguard your data for Spudy AI and Spudy Library.</p>
+        <div class="legal-card">
+            <details>
+                <summary><i class="fas fa-database"></i> Data Collection</summary>
+                <p>For Spudy AI, we collect user inputs and usage data to train and improve our models. For Spudy Library, we collect email addresses for course registrations and contact forms. We also collect analytics data to enhance both services.</p>
+            </details>
+            <details>
+                <summary><i class="fas fa-cogs"></i> Use of Data</summary>
+                <p>Spudy AI data is used to improve AI models, provide personalized outputs, and analyze performance. Spudy Library data is used for course confirmations and service updates. We do not sell your data to third parties.</p>
+            </details>
+            <details>
+                <summary><i class="fas fa-share-alt"></i> Data Sharing</summary>
+                <p>We may share data with service providers (e.g., cloud platforms for Spudy AI, email providers for Spudy Library) to deliver our services. All providers comply with privacy standards.</p>
+            </details>
+            <details>
+                <summary><i class="fas fa-user-lock"></i> User Rights</summary>
+                <p>You have the right to access, correct, or delete your personal data for both Spudy AI and Spudy Library. Contact us at spudytv14@gmail.com to exercise these rights.</p>
+            </details>
+            <details>
+                <summary><i class="fas fa-cookie-bite"></i> Cookies</summary>
+                <p>We use cookies to enhance your experience and analyze usage across Spudy AI and Spudy Library services. Manage cookie preferences via your browser settings.</p>
+            </details>
+            <details>
+                <summary><i class="fas fa-shield-alt"></i> Data Security</summary>
+                <p>We implement robust security measures, including encryption for Spudy AI data and secure storage for Spudy Library data. However, no system is completely secure, and we cannot guarantee absolute security.</p>
+            </details>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="floating-element" style="width: 100px; height: 100px; top: 20%; left: 5%;"></div>
+        <div class="footer-grid">
+            <div>
+                <h3>Spudy Intelligence Technology</h3>
+                <p>Empowering users with innovative AI-driven solutions through Spudy AI and a vibrant digital library experience via Spudy Library.</p>
+            </div>
+            <div class="quick-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html#hero"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="index.html#spudy-courses"><i class="fas fa-book"></i> Library Courses</a></li>
+                    <li><a href="index.html#spudy-careers"><i class="fas fa-briefcase"></i> Careers</a></li>
+                    <li><a href="#contact"><i class="fas fa-phone"></i> Contact</a></li>
+                </ul>
+            </div>
+            <div id="contact" class="contact-links">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li><a href="mailto:spudytv14@gmail.com"><i class="fas fa-envelope"></i> Email</a></li>
+                    <li><a href="https://wa.me/263716669706"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                    <li><a href="https://g.co/kgs/hC6zuio"><i class="fas fa-map"></i> Google Map</a></li>
+                    <li><a href="https://facebook.com/matipaishe_blessing"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                    <li><a href="https://x.com/matipaishe_blessing"><i class="fab fa-x-twitter"></i> X</a></li>
+                    <li><a href="https://instagram.com/matipaishe_blessing"><i class="fab fa-instagram"></i> Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Spudy Intelligence Technology. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Smooth Scroll to Contact
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Floating Elements for Header
+        for (let i = 0; i < 5; i++) {
+            const element = document.createElement('div');
+            element.className = 'floating-element';
+            element.style.width = Math.random() * 100 + 50 + 'px';
+            element.style.height = element.style.width;
+            element.style.top = Math.random() * 100 + '%';
+            element.style.left = Math.random() * 100 + '%';
+            element.style.animationDuration = Math.random() * 20 + 10 + 's';
+            document.querySelector('.header').appendChild(element);
+        }
+
+        // Floating Elements for Sections
+        const sections = ['terms-section', 'privacy-section', 'footer'];
+        sections.forEach(section => {
+            for (let i = 0; i < 3; i++) {
+                const element = document.createElement('div');
+                element.className = 'floating-element';
+                element.style.width = Math.random() * 80 + 50 + 'px';
+                element.style.height = element.style.width;
+                element.style.top = Math.random() * 100 + '%';
+                element.style.left = Math.random() * 100 + '%';
+                element.style.animationDuration = Math.random() * 15 + 10 + 's';
+                document.querySelector(`.${section}`).appendChild(element);
+            }
+        });
+    </script>
+</body>
+</html>
